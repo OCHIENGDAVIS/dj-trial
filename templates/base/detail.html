@@ -1,0 +1,65 @@
+{% extends 'main.html' %}
+{% block title %}
+    {{ room.name }}
+{% endblock %}
+{% block content %}
+    <style>
+        .room_container{
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            column-gap: 2rem;
+        }
+    </style>
+    <h1>{{ room.name }}</h1>
+    <div class="room_container">
+        <div>
+
+            <div>
+                <h5>{{ room.id }} -- {{ room.name }}
+                    {% if request.user == room.host %}
+                    <small><a href="{% url 'base:update_room' pk=room.id %}">update room</a></small>
+                    <small><a href="{% url 'base:delete_room' pk=room.id %}">delete room</a></small>
+                    {% endif %}
+                </h5>
+                <p>{{ room.description }}</p>
+                <div class="comment_wrapper">
+                    <h3>Room Conversations</h3>
+                    <hr />
+                    {% for message in msgs %}
+                        <div>
+                            <small>@{{ message.user }} {{ message.created | timesince}}</small>
+                            {% if request.user == message.user %}
+                                <small>
+                                    <a href="{% url 'base:delete_message' room_pk=room.id message_pk=message.id %}">delete</a>
+                                </small>
+                            {% endif %}
+                            <p>{{ message.body }}</p>
+                            <hr />
+                        </div>
+                    {% endfor %}
+
+                </div>
+            {% if request.user.is_authenticated %}
+                <div>
+                    <h4>Write Your comment </h4>
+                    <form method="POST" action=""> {% csrf_token %}
+                        <input name="body" placeholder="Write your message here..." >
+
+                    </form>
+                </div>
+            {% endif %}
+            </div>
+
+        </div>
+        <div>
+            <h3>Participants </h3>
+            <hr />
+            {% for participant in participants %}
+                <di>
+                    <p>@{{ participant.username }}</p>
+                </di>
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}

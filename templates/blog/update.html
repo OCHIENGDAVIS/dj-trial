@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    Update | {{ blog.title }}
+{% endblock %}
+
+{% block section %}
+    <a href="{% url 'blog:create' %}"> Create a blog</a> <br />
+
+{% endblock %}
+
+{% block content %}
+
+    <a href="{% url 'blog:home' %}">All blogs </a>
+    {% if blog %}
+        <h3>Update Blog titled '{{ blog.title }}' </h3>
+        <div>
+            <form method="POST" action=""> {% csrf_token %}
+{#                <div>#}
+{#                    <label htmlFor="title">Title of the Blog Post </label><br />#}
+{#                    <input type="text" name="title" id="title" value="{{ blog.title }}">#}
+{#                </div>#}
+{#                 <div>#}
+{#                    <label htmlFor="title">Contents of the Blog Post </label> <br />#}
+{#                     <textarea name="body" cols="40" rows="6" id="body" value="{{ blog.body }}">#}
+{#                         {{ blog.body }}#}
+{#                     </textarea>#}
+{#                </div>#}
+                {{ form.as_p }}
+                <div>
+                    <input type="submit" value="Update" />
+                </div>
+
+            </form>
+        </div>
+    {% endif %}
+    {% if msg %}
+        <p>{{ msg }}</p>
+    {% endif %}
+
+{% endblock %}

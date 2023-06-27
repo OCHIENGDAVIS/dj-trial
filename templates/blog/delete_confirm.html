@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    Delete Confirm
+{% endblock %}
+
+{% block section %}
+    <a href="{% url 'blog:create' %}"> Create a blog</a> <br />
+
+{% endblock %}
+
+{% block content %}
+
+    <a href="{% url 'blog:home' %}">All blogs </a>
+    <h3>Confirm Delete of blog `{{ blog.title }}` </h3>
+    <form method="POST" action=""> {% csrf_token %}
+        <a href="{% url 'blog:details' id=blog.id %}">Cancel </a>
+        <input type="submit" value="Confirm">
+
+    </form>
+{% endblock %}

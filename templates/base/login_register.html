@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% block title %} Login {% endblock %}
+{% block content %}
+    {% if active_page == 'register' %}
+        <form method="POST" action=""> {% csrf_token %}
+
+        {{ form.as_p }}
+        <input type="submit" value="Register">
+        </form>
+        <p>Already have an account? <a href="{% url 'login' %}">login</a></p>
+    {% else %}
+    <div>
+        <form method="POST" action=""> {% csrf_token %}
+            <div>
+                <label htmlFor="username">Username</label>
+                <input id="username" name="username" placeholder="Your Username" />
+            </div>
+            <div>
+                <label htmlFor="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Your Password" />
+            </div>
+            <input type="submit" value="login">
+        </form>
+    <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+    </div>
+    {% endif %}
+{% endblock %}
+
+
+
+

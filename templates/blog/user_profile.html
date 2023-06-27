@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    User Profile | {{ user.username }}
+{% endblock %}
+
+{% block section %}
+    <a href="{% url 'blog:create' %}"> Create a blog</a> <br />
+
+{% endblock %}
+
+{% block content %}
+
+    <a href="{% url 'blog:home' %}">ALl  Blogs </a>
+    {% if user %}
+        <h3>profile for  '{{ user.username }}' </h3>
+        <div>
+            {% for post in user_posts %}
+                <p>
+                    <a href="{% url 'blog:details' id=post.id %}"> {{ post.title }}</a>
+                </p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if msg %}
+        <p>{{ msg }}</p>
+    {% endif %}
+
+{% endblock %}

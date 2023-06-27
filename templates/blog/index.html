@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    Blog | Home
+{% endblock %}
+
+{% block section %}
+    <a href="{% url 'blog:create' %}"> Create a blog</a> <br />
+
+{% endblock %}
+
+{% block content %}
+    <h3>List of blogs </h3>
+
+    {% if blogs %}
+        <ul>
+            {% for blog in blogs %}
+                <li>
+                    <div>
+                         <a href="{% url 'blog:details' id=blog.id %}">{{ blog.title }}</a>
+                     </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>
+            No blog posts Yet!. <a href="{% url 'blog:create' %}">Create a blog post</a>
+        </p>
+    {% endif %}
+{% endblock %}

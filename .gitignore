@@ -1,0 +1,43 @@
+# Byte-compiled / optimized files
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Logs
+*.log
+
+# Django generated files
+*.db
+*.sqlite3
+/media
+/staticfiles
+
+# Secret keys and sensitive information
+.env
+
+# Environment-specific settings
+.env.local
+.env.development
+.env.production
+
+# Dependency directories
+venv/
+env/
+env2/
+env3/
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Development tools
+.vscode/
+.idea/
+
+# Miscellaneous
+.DS_Store
+*.swp
+*.bak

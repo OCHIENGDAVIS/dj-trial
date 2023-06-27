@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    Details | {{ blog.title }}
+{% endblock %}
+
+{% block section %}
+    <a href="{% url 'blog:create' %}"> Create a blog</a> <br />
+
+{% endblock %}
+
+{% block content %}
+
+    <a href="{% url 'blog:home' %}">All blogs </a>
+    <h3>Details Page for <i> '{{ blog.title }}' </i> </h3>
+
+    {% if blog %}
+        <h4>{{ blog.title }} <small>Created by ( <a href="{% url 'blog:user_profile' username=blog.user.username %}">{{ blog.user }})</a> on {{ blog.created }}</small></h4>
+
+            {%  for tag in blog.tags.all %}
+                <button>{{ tag }}</button>
+            {% endfor %}
+        {% if request.user == blog.user %}
+            <small>
+                <a href="{% url 'blog:delete' id=blog.id %}"> Delete</a>
+            </small>
+            <small>
+                <a href="{% url 'blog:update' id=blog.id %}"> update</a>
+            </small>
+         {% endif %}
+        <p>{{ blog.body }}</p>
+        <hr />
+        <form method="POST" action="{% url 'blog:create_comment' id=blog.id %}">{% csrf_token %}
+            {{ form.as_p }}
+            <input type="hidden" name="id" value="{{ blog.id }}">
+        </form>
+            {% if comments %}
+                {% for comment in comments %}
+                    <div>
+                        <small>{{ comment.user.username }}</small> <br />
+                        <p>
+
+                             {{ comment }}
+                        </p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+    {% else %}
+        {% if msg %}
+        <p>
+            No blog. <a href="{% url 'blog:home' %}">Go back to blogs</a>
+        </p>
+        {% endif %}
+    {% endif %}
+{% endblock %}
