@@ -1,0 +1,28 @@
+<nav class="navigation">
+    <div>
+        <a href="/">
+            <h1>Logo</h1>
+        </a>
+    </div>
+    <div class="wrapper">
+        <form method="GET" action=" {% url 'base:rooms' %}">
+            <input type="text" name="q" placeholder="Search Rooms ...">
+            <input type="submit" value="Search">
+        </form>
+        <a href="{% url 'products:home' %}" >products</a>
+        <a href="{% url 'base:rooms' %}" >rooms</a>
+        <a href="{% url 'blog:home' %}" >Blog</a>
+        <div>
+            {% if not user.is_authenticated %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">Register</a>
+
+            {% else %}
+                <a href="{% url 'logout' %}">Logout</a>
+                ({{ user }})
+            {% endif %}
+
+        </div>
+    </div>
+
+</nav>

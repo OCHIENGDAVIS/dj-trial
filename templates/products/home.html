@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+{% block title %}
+{% endblock %}
+
+{% block content %}
+    <h1> Products </h1>
+    <div>
+        <a href="{% url 'products:create' %}">Create a new Product</a>
+    </div> <br /> <br /> <br />
+
+    {% if products %}
+        {% for product in products %}
+            <div>
+                <a href="{% url 'products:detail' id=product.id %}">{{ product.title }}</a>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
