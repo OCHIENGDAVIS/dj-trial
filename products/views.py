@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views import View
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 
 from .models import Product, Article
@@ -58,3 +59,7 @@ class ArticleCreateView(CreateView):
     def form_valid(self, form):
         print(form.cleaned_data)
         return super().form_valid(form)
+
+
+class MyArticles(View):
+    pass

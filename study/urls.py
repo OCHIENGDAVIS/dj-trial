@@ -10,6 +10,7 @@ urlpatterns = [
     path('login/', loginPage, name='login'),
     path('register/', registerPage, name='register'),
     path('logout/', logoutPage, name='logout'),
-    path('products/', include('products.urls', namespace='products'))
+    path('products/', include('products.urls', namespace='products')),
+    path('cbv/', include('cbv.urls', namespace='cbv'))
 
 ]

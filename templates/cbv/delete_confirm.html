@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+    <h1>Confirm Delete  </h1>
+    <p>Cnfirm deletion of <code>{{ book.title }}</code></p>
+    <form action="." method="POST"> {% csrf_token %}
+        <a href="{% url 'cbv:book_detail' id=book.id %}">Cancel</a>
+        <input type="submit" value="Delete " />
+    </form>
+{% endblock %}

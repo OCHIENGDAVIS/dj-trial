@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+
+{% block title %}
+    Book Details
+{% endblock %}
+
+{% block content %}
+    <h1>Book Details  </h1>
+    {% if book %}
+        <h2>{{ book.title }}</h2>
+        <small>Written by <a href="#"> <strong> {{ book.author.name }}</strong><a/></small>
+        <div>
+            <a href="{% url 'cbv:book_update' id=book.id %}">update book</a> |
+            <a href="{% url 'cbv:book_delete' id=book.id %}">Delete book</a> |
+            <a href="{% url 'cbv:book_list'  %}">All books</a>
+        </div>
+        <p>{{ book.description }}</p>
+    {% else %}
+        <p>Book not found</p>
+    {% endif %}
+{% endblock %}
