@@ -1,0 +1,11 @@
+{% extends 'main.html' %}
+{% block title %}
+    Detail for Article
+{% endblock %}
+
+{% block content %}
+    {% if object %}
+        <h2>{{ object.title }}</h2>
+        <p>{{ object.description }}</p>
+    {% endif %}
+{% endblock %}

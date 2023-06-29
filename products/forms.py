@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Product
+from .models import Product, Article
 
 
 class ProductForm(forms.ModelForm):
@@ -41,3 +41,9 @@ class RawProductForm(forms.Form):
         }
     ))
     price = forms.DecimalField(label='Product Price', initial=200)
+
+
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = ['title', 'description']

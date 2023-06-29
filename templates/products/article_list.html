@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+{% block title %}
+    list of articles
+{% endblock %}
+{% block content %}
+    {% if object_list %}
+        {% for obj in object_list %}
+            <div>
+                <a href="{% url 'products:articles_detail' id=obj.id %}">{{ obj.title }}</a>
+            </div>
+
+        {% endfor %}
+    {% endif %}
+{% endblock %}

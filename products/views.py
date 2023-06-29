@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 
-from .models import Product
-from .forms import ProductForm, RawProductForm
+from .models import Product, Article
+from .forms import ProductForm, RawProductForm, ArticleForm
 
 
 def product_home(request):
@@ -32,3 +33,28 @@ def product_create(request):
     print(form.errors)
     ctx = {'form': form}
     return render(request, 'products/create.html', ctx)
+
+
+class ArticleListView(ListView):
+    queryset = Article.objects.all()
+
+
+class ArticleDetailView(DetailView):
+    template_name = 'products/article_detail.html'
+    # queryset = Article.objects.all()
+    model = Article
+
+    def get_object(self, *args, **kwargs):
+        id = self.kwargs.get('id')
+        return get_object_or_404(self.model, id=id)
+
+
+class ArticleCreateView(CreateView):
+    template_name = 'products/article_create.html'
+    model = Article
+    form_class = ArticleForm
+    queryset = Article.objects.all()
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
