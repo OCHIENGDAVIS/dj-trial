@@ -17,6 +17,9 @@ class Book(models.Model):
     shelf = models.ForeignKey('Shelf', on_delete=models.SET_NULL, null=True, blank=True)
     floor = models.ForeignKey('Floor', on_delete=models.SET_NULL, null=True, blank=True)
 
+    class Meta:
+        ordering = ['-updated', '-created']
+
     def __str__(self):
         return f'{self.title} By {self.author.name}'
 

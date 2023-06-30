@@ -8,3 +8,6 @@ body{
 .navigation{
     background-color: #f1f3f4;
 }
+.errorlist li{
+    color: red;
+}
