@@ -11,6 +11,9 @@ urlpatterns = [
     path('register/', registerPage, name='register'),
     path('logout/', logoutPage, name='logout'),
     path('products/', include('products.urls', namespace='products')),
-    path('cbv/', include('cbv.urls', namespace='cbv'))
+    path('cbv/', include('cbv.urls', namespace='cbv')),
+    path('articles/', include('articles.urls', namespace='articles')),
+    path('accounts/', include('accounts.urls', namespace='accounts'))
+
 
 ]
