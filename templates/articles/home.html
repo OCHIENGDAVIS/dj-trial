@@ -3,12 +3,16 @@
 {% endblock %}
 
 {% block content %}
-    Articles page
-    <form method="POST"> {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Create a" />
 
+    <form method="GET" action="{% url 'articles:search' %}">
+        <input type="text" placeholder="search articles" name="q">
+        <input type="submit" value="search" />
     </form>
+    <hr />
+    {% for article in articles %}
+        <p>{{ article.title }}</p>
+    {% endfor %}
+
 {% endblock %}
 
 model form

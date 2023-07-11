@@ -6,4 +6,7 @@
 
 {% block content %}
     <hh2>Search List </hh2>
+    {% for article in articles %}
+        <li>{{ article.title }}</li>
+    {% endfor %}
 {% endblock %}
